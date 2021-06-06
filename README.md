@@ -98,7 +98,7 @@ Below is a breakdown of each partial and their use:
 
 - `_seo_meta_tags.html.erb`: used for search engines and preview-card linking when sharing links on social media. Replace the `"Add something here.."` with your own data
 - `_font_import_links.html.erb`: Include any fonts from any CDN (default is OpenSans from Google Fonts)
-- `_ionicons.html.erb`: Optional Ionicons import from CDN. use `<ion-icon name="person"></ion-icon>` syntax in your `html.erb` or `.js` react files or remove if you don't want to use it. The icon tag also supports tailwind classes
+- `_ionicons.html.erb`: Optional Ionicons import from CDN. use `<ion-icon name="person"></ion-icon>` syntax in your `html.erb` or `.js` react files or remove entirely if you don't want to use it. The icon tag also supports tailwind classes
 
 2. Replace `favicon.png` and `preview-card.png`:
 
@@ -107,8 +107,8 @@ Below is a breakdown of each partial and their use:
 
 3. Add a React component to a view
 
-- create a component file file in `app/javascript/packs/components/MyComponent.js`
-- Link to it inside a view with a ex:
+- create a component file ex:`app/javascript/packs/components/MyComponent.js`
+- Link to it inside a view:
 
 ```erb
 #app/views/static_pages/landing_pages/index.html.erb
