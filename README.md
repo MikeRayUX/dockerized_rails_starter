@@ -1,6 +1,6 @@
 # Dockerized Ruby on Rails 6+ Starter Pack
 
-What's worse than having a great idea for an app, and instead of jumping right into building, you become immediately stuck in a tar pit configuration all of the necessary libraries/gems needed to hit the ground running like: `devise-cookie-auth`, `jwt-auth`, `front-end-library`, e.t.c.
+What's worse than having a great idea for an app, and instead of jumping right into building, you become immediately stuck in a tar pit configuring all of the necessary features/libraries/gems needed to hit the ground running like: `devise-cookie-auth`, `jwt-auth`, `front-end-library`, e.t.c.
 
 This starter pack is [dockerized](https://developerexperience.io/practices/dockerizing) by default and contains pre-configured libraries, gems, and reasonable defaults.
 
@@ -11,7 +11,7 @@ This starter pack is [dockerized](https://developerexperience.io/practices/docke
 - [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails) - The only fixtures replacement worth using with rails.
 - [mailcatcher](https://github.com/sj26/mailcatcher/) - ran as a `service` in `docker-compose.yml` and can be accessed at [http://localhost:1080](http://localhost:1080)
 - [devise](https://github.com/heartcombo/devise) - flexible/easy to configure cookie auth with an included `User` model and customized devise views
-- **jwt-auth** - A roll-your-own jwt authentication solution with that handles registering/sessions/forgot_password via api calls to an `ApiController` **NOTE: as of writing this, this is unfinished and does not yet include a revocation strategy or refresh tokens making this less secure than a mature solution like devise-jwt. Use at your own risk!!**
+- **jwt-auth** - A roll-your-own jwt authentication solution that handles registering/sessions/forgot_password via api calls to an `ApiController` **NOTE: as of writing this, this is unfinished and does not yet include a revocation strategy or refresh tokens making this less secure than a mature solution like devise-jwt. Use at your own risk!!**
 
 It's likely that your preferred libraries differ from what's included here. You are encouraged to fork this repo, customize it an make it your own.
 
@@ -45,10 +45,10 @@ chmod u+x docker_entrypoint.sh
 chmod +x app/bin/webpack-dev-server
 ```
 
-2. **Build docker containers and project**
+2. **Build docker containers and services**
 
 ```bash
-docker-compose down --remove orphans &&
+docker-compose down &&
 docker-compose build &&
 docker-compose run app yarn install --check-files &&
 docker-compose run app bundle install
@@ -65,11 +65,26 @@ docker-compose run app bundle exec rails db:seed &&
 4. **Remove any orphan containers from the build process and start the Rails Server**
 
 ```bash
-docker-compose down --remove orphans &&
+docker-compose down &&
 docker-compose up --remove-orphans
 ```
 
-5. **Access the app from http://localhost:3000/. You should now be greeted with the standard demo page **
+5. **All done. Now you can access the app from [http://localhost:3000/](http://localhost:3000/)**
+
+**OPTIONAL: Do steps 2-4 all at once in a single chain of commands**:
+
+```bash
+docker-compose down &&
+docker-compose build &&
+docker-compose run app yarn install --check-files &&
+docker-compose run app bundle install
+docker-compose run app bundle exec rails db:create &&
+docker-compose run app bundle exec rails db:migrate &&
+docker-compose run app bundle exec rails db:seed &&
+docker-compose down &&
+docker-compose up --remove-orphans
+
+```
 
 ---
 
@@ -126,7 +141,7 @@ Error response from daemon: OCI runtime create failed: container_linux.go:370: s
 # WARNING: this will remove docker containers/images/volumes
 # globally on your machine!! USE AT YOUR OWN RISK!
 alias hardrebuild="
-  docker-compose down --remove orphans &&
+  docker-compose down &&
   docker system prune -a -f &&
   docker volume prune -f &&
   docker-compose build &&
@@ -135,7 +150,7 @@ alias hardrebuild="
   docker-compose run app bundle exec rails db:create &&
   docker-compose run app bundle exec rails db:migrate &&
   docker-compose run app bundle exec rails db:seed &&
-  docker-compose down --remove orphans &&
+  docker-compose down &&
   docker-compose up --remove-orphans
   "
 ```
