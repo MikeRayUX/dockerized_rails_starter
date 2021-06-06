@@ -1,4 +1,4 @@
-# Starter pack for Ruby on Rails 6+
+# Dockerized Ruby on Rails 6+ Starter Pack
 
 ## Getting Started (Setting up Docker)
 
