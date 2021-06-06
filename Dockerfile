@@ -5,30 +5,27 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 # install latest node
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash  
-RUN  apt-get install nodejs -yq 
-# docker-compose run --rm -e EDITOR=nano app bin/rails credentials:edit to edit credentials
-RUN   apt-get update -qq 
-RUN   apt-get install -y nano 
-# remove cmdtest to fix yarn install error
-RUN   apt-get remove cmdtest 
-# install yarn
-RUN   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - 
-RUN   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list 
-RUN  apt-get update && apt-get install yarn 
-# install postgres client
-RUN   apt-get update -qq  
-RUN   apt-get install -y nodejs postgresql-client 
-# fixes 'you must use bundler 2 or higher with this lockfile'
-RUN   gem update --system && gem install bundler 
-RUN   bundler update --bundler  
-RUN   bundle install 
-# fixes yanked mimemagic version
-# RUN   apt-get install -y shared-mime-info 
-# RUN   bundle update mimemagic 
-RUN   yarn install --check-files 
-# fix permissions for docker_entrypoint.sh
-RUN   chmod +x docker_entrypoint.sh
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash  && \
+  apt-get install nodejs -yq && \
+  # docker-compose run --rm -e EDITOR=nano app bin/rails credentials:edit to edit credentials
+  apt-get update -qq && \
+  apt-get install -y nano && \
+  # remove cmdtest to fix yarn install error
+  apt-get remove cmdtest && \
+  # install yarn
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+  apt-get update && apt-get install yarn && \
+  # install postgres client
+  apt-get update -qq && \ 
+  apt-get install -y nodejs postgresql-client && \
+  # fixes 'you must use bundler 2 or higher with this lockfile'
+  gem update --system && gem install bundler && \
+  bundler update --bundler && \ 
+  bundle install && \
+  yarn install --check-files && \
+  # fix permissions for docker_entrypoint.sh
+  chmod +x docker_entrypoint.sh
 
 COPY docker_entrypoint.sh /usr/bin/
 # Add a script to be executed every time the container starts.
