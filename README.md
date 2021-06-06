@@ -33,7 +33,7 @@ docker-compose down --remove orphans &&
 docker-compose up --remove-orphans
 ```
 
-5. **Access the app from http://localhost:3000/. You should now be greeted with the standard demo page page**
+5. **Access the app from http://localhost:3000/. You should now be greeted with the standard demo page **
 
 ---
 
@@ -45,9 +45,9 @@ docker-compose up --remove-orphans
 2. `_font_import_links.html.erb`: Include any fonts from any CDN (default is OpenSans from Google Fonts)
 3. `_ionicons.html.erb`: Optional Ionicons import from CDN. use `<ion-icon class="tailwind-classes-here" name="person"></ion-icon>` syntax in your `html.erb` or `.js` react files or remove if you don't want to use it.
 
-### Troubleshooting
+### Common Errors & Troubleshooting
 
-**problem**:
+**error**:
 
 ```bash
 Error response from daemon: OCI runtime create failed: container_linux.go:370: starting container process caused: exec: "./docker_entrypoint.sh": permission denied: unknown
@@ -55,17 +55,19 @@ Error response from daemon: OCI runtime create failed: container_linux.go:370: s
 
 **solution**: `chmod u+x docker_entrypoint.sh`
 
-**problem**:
+**error**:
 `bash: /usr/src/app/bin/webpack-dev-server: /usr/bin/env: bad interpreter: Permission denied`
 
 **solution**: `chmod +x app/bin/webpack-dev-server`
 
-**Still having issues getting this project working with docker and want an easy way to reset your docker containers/images/volumes?**
-Consider creating an alias to quickly perform a hardrebuild on your project containers making it quicker to diagnose and fix errors:
+**Having issues with Docker setup and want an easy way to reset your docker containers/images/volumes while you debug?**
+
+- Create an alias to quickly perform a hard-rebuild on your project containers making it quicker to diagnose, iterate and fix errors:
 
 ```bash
 # ~/.zshrc
-# Warning: this will remove docker containers/images/volumes globally on your machine!! USE AT YOUR OWN RISK!
+# WARNING: this will remove docker containers/images/volumes
+# globally on your machine!! USE AT YOUR OWN RISK!
 alias hardrebuild="
   docker-compose down --remove orphans &&
   docker system prune -a -f &&
