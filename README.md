@@ -1,6 +1,6 @@
 # Starter pack for Ruby on Rails 6+
 
-## Getting Started
+## Getting Started (Setting up Docker)
 
 1. Set the permissions for `docker_entrypoint.sh` and `webpack-dev-server` files
 

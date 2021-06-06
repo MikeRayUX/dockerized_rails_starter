@@ -3,8 +3,16 @@
   <head>
     <title>DockerizedRailsStarter</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <%= render 'layouts/headers/seo_meta_tags' %>
+    <%= favicon_link_tag asset_path('favicon.png') %>
+
+    <%= render 'layouts/headers/font_import_links' %>
+    <%= render 'layouts/headers/ionicons' %>
+    <%= render 'layouts/headers/google_recaptcha'%>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= render 'layouts/headers/google_tag_manager'%>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
