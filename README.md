@@ -1,13 +1,21 @@
 # Dockerized Ruby on Rails 6+ Starter Pack
 
-A pre-configured dockerized Rails 6+ app that allows you to hit the ground running. This app contains several opinionated defaults and preconfigured/included features and libraries.
+What's worse than having a great idea for an app, and instead of jumping right into building, you become immediately stuck in a tar pit configuration all of the necessary libraries/gems needed to hit the ground running like: `devise-cookie-auth`, `jwt-auth`, `front-end-library`, e.t.c.
 
-**List of Default Libraries/Configurations**
+This starter pack is [dockerized](https://developerexperience.io/practices/dockerizing) by default and contains pre-configured libraries, gems, and reasonable defaults.
 
-- **React with Webpacker-only configuration** - Ready to create/link react components in your views with `<%= javascript_pack_tag 'path/to/MyComponent' %>`
-- **Rspec** - preferred testing framework over `minitest`
+**List of default included libraries/configurations**
 
-### Setup Step 1.: Personalize your new project and setup a new git repository
+- [React with Webpacker-only configuration](https://github.com/rails/webpacker) - Ready to create/link react components in your views with `<%= javascript_pack_tag 'path/to/MyComponent' %>`. Webpacker is ran as a `service` in `docker-compose.yml`
+- [rspec-rails](https://github.com/rspec/rspec-rails) - preferred testing framework over `minitest`
+- [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails) - The only fixtures replacement worth using with rails.
+- [mailcatcher](https://github.com/sj26/mailcatcher/) - ran as a `service` in `docker-compose.yml` and can be accessed at [http://localhost:1080](http://localhost:1080)
+- [devise](https://github.com/heartcombo/devise) - flexible/easy to configure cookie auth with an included `User` model and customized devise views
+- **jwt-auth** - A roll-your-own jwt authentication solution with that handles registering/sessions/forgot_password via api calls to an `ApiController` **NOTE: as of writing this, this is unfinished and does not yet include a revocation strategy or refresh tokens making this less secure than a mature solution like devise-jwt. Use at your own risk!!**
+
+It's likely that your preferred libraries differ from what's included here. You are encouraged to fork this repo, customize it an make it your own.
+
+### Setup Step 1.: Personalize/rename this project and setup a new git repository
 
 1. **Clone the project:**
 
