@@ -50,13 +50,13 @@ services:
       - POSTGRES_PORT=5432
       # - PGTZ=America/Los_Angeles
       - TZ=GMT-8
-  # mailcatcher:
-  #   mem_limit: '500000000'
-  #   mem_reservation: '500000000'
-  #   image: yappabe/mailcatcher
-  #   ports:
-  #     - '1025:1025'
-  #     - '1080:1080'
+  mailcatcher:
+    mem_limit: '500000000'
+    mem_reservation: '500000000'
+    image: yappabe/mailcatcher
+    ports:
+      - '1025:1025'
+      - '1080:1080'
   # stripe_cli:
   #   # will prompt to authorize via link if authorization expired
   #   command: 'listen --api-key sk_test_0d4LHDkpMBhESxsqudQXGMMW --forward-to 192.168.0.12:3000/stripe-cd4a0db6-36b4-4b6d-baba-58877e618553'
