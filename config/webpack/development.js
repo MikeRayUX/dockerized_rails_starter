@@ -2,7 +2,6 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const environment = require('./environment');
 
-// hot reloads non webpack files UNCOMMENT FOR REGULAR RELOADING OF NON JAVASCRIPT PACK HOT RELOADING (NOT USING THIS FIXES COMPILING... FOREVER ISSUE IN REACT OR OTHER LIBRARY)
 const chokidar = require('chokidar');
 environment.config.devServer.before = (app, server) => {
   chokidar

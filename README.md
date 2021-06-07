@@ -1,6 +1,6 @@
 # Dockerized Ruby on Rails 6+ Starter Pack
 
-What's worse than having a great idea for an app, and instead of jumping right into building, you become immediately stuck in a tar pit configuring all of the necessary features/libraries/gems needed to hit the ground running like: `devise-cookie-auth`, `jwt-auth`, `front-end-library`, e.t.c.
+What's worse than having a great idea for an app, and instead of being able to jump right into building, you become immediately stuck in a tar pit configuring all of the necessary features/libraries/gems needed to hit the ground running like: `devise-cookie-auth`, `jwt-auth`, `front-end-library`, e.t.c.
 
 This starter pack is [dockerized](https://developerexperience.io/practices/dockerizing) by default and contains pre-configured libraries, gems, and reasonable defaults.
 
@@ -26,7 +26,7 @@ git clone git@github.com:MichaelArriaga/dockerized_rails_starter.git
 2. **Rename the project folder to your desired project name**
 
 ```bash
-mv rn-starter-pack/ my_new_awsome_project
+mv dockerized_rails_starter/ my_new_awsome_project
 ```
 
 3. **Replace and setup a git repository**
