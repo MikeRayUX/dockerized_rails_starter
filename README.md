@@ -154,3 +154,41 @@ alias hardrebuild="
   docker-compose up --remove-orphans
   "
 ```
+
+---
+
+# Mailer Configuration
+
+At some point, you will want to send emails in the real world. You can view emails sent in development environment through the `:mailcatcher` service accessed at: [http://localhost:1080/](http://localhost:1080/) when docker-compose is running.
+
+You must first configure your email service, and the `from` line in the devise forgot password mailer:
+
+- Navigate to `config/initializers/devise.rb` and edit the following line to customzie the subject line in the forgot password mailer:
+
+```ruby
+config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+```
+
+- **Set up your email service api credentials (default used is sendgrid)**
+
+```ruby
+#environment.rb
+if Rails.env.production?
+	# Settings for sendgrid LIVE
+	ActionMailer::Base.smtp_settings = {
+		user_name: 'apikey',
+		password: 'SENDGRID_API_KEY',
+		domain: 'SENDGRID_DOMAIN',
+		address: 'SENDGRID_ADDRESS',
+		port: 587,
+		authentication: :plain,
+		enable_starttls_auto: true
+	}
+else
+	# Settings for mailcatcher TEST
+	ActionMailer::Base.smtp_settings = {
+	address: "mailcatcher",
+	port: 1025
+	}
+end
+```
