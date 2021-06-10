@@ -159,7 +159,7 @@ alias hardrebuild="
 
 # Mailer Configuration
 
-At some point, you will want to send emails in the real world. You can view emails sent in development environment through the `:mailcatcher` service accessed at: [http://localhost:1080/](http://localhost:1080/) when docker-compose is running.
+At some point, you will want to send emails in the real world. You can view emails sent in development environment through the `:mailcatcher` docker service accessed at: [http://localhost:1080/](http://localhost:1080/) when docker-compose is running.
 
 You must first configure your email service, and the `from` line in the devise forgot password mailer:
 
