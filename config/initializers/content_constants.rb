@@ -1,0 +1,2 @@
+APP_NAME = 'MyApp'
+COMPANY_NAME = 'MyApp LLC'

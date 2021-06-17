@@ -18,15 +18,6 @@ RSpec.describe 'static_pages/landing_pages_controller', type: :request do
 
     page = response.body
 
-    expect(page).to include 'sign up'
+    expect(page).to include 'MyApp'
   end
-
-  scenario 'landing page contains sign in link' do
-    get root_path
-
-    page = response.body
-
-    expect(page).to include 'sign in'
-  end
-  
 end
